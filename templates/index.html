@@ -1,0 +1,95 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>>\\<</title>
+  <!--link rel="stylesheet" href="style.css"-->
+
+</head>
+<body>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Alata', sans-serif;
+  background-color: #212121;
+  color: #eee;
+}
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container p {
+  font-size: 3rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  overflow: hidden;
+}
+.container p span.typed-text {
+  font-weight: normal;
+  color: #dd7732;
+}
+.container p span.TypeCursor {
+  display: inline-block;
+  background-color: #ccc;
+  margin-left: 0.1rem;
+  width: 3px;
+  animation: blink 1s infinite;
+}
+.container p span.TypeCursor.typing {
+  animation: none;
+}
+@keyframes blink {
+  0%  { background-color: #ccc; }
+  49% { background-color: #ccc; }
+  50% { background-color: transparent; }
+  99% { background-color: transparent; }
+  100%  { background-color: #ccc; }
+}
+@media (max-width:750px) {
+  .container p {
+    font-size: 2rem;
+  }
+}
+</style>
+<div class="container">
+    <p><span class="typed-text"></span><span class="TypeCursor">&nbsp;</span><br><a href="/api">Click here for Documentation</a></p>
+  </div>
+
+<script>
+const TypingText = document.querySelector(".typed-text");
+const AutoTyping = document.querySelector(".TypeCursor");
+
+const textArray = ["Hello, welcome to MhankBarBar Api's😁, MhankBarBar Api's provide some interesting features. If you want to know, please go to the documentation❤️"];
+const typingDelay = 200;
+const erasingDelay = 100;
+const newTextDelay = 2000; 
+let textArrayIndex = 0;
+let charIndex = 0;
+
+function type() {
+  if (charIndex < textArray[textArrayIndex].length) {
+    if(!AutoTyping.classList.contains("typing")) AutoTyping.classList.add("typing");
+    TypingText.textContent += textArray[textArrayIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, typingDelay);
+  } 
+  else {
+    AutoTyping.classList.remove("typing");
+      setTimeout(erase, newTextDelay);
+  }
+}
+document.addEventListener("DOMContentLoaded", function() { 
+  if(textArray.length) setTimeout(type, newTextDelay + 250);
+});
+</script>
+
+</body>
+</html>
